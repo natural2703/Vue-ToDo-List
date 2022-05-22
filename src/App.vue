@@ -5,10 +5,8 @@
     <input type='text' placeholder="Write task" v-model="tmpTaskName"/>
     <input type='submit' @click="addTask">
   </form>
-  <ul v-for="task in tasks" :key="task.id">
-      <li>
-        <SingleTask :task="task" :removeTask="removeTask"/>
-      </li>
+  <ul class="taskContainer">
+        <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" :changeStatus="changeStatus"/>
   </ul>
 </div>
 </template>
@@ -46,7 +44,10 @@ export default {
       console.log(`delete task at ${index}`)
       console.log(this.tasks[1])
       this.tasks = this.tasks.filter(item=>item.id!==index)
-
+    },
+    changeStatus(index,status){
+      const i = this.tasks.findIndex(item=>item.id==index)
+      this.tasks[i].done = status
     }
   }
 }
@@ -61,4 +62,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+.taskContainer{
+  list-style-type:none;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 </style>
