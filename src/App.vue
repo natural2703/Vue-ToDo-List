@@ -3,7 +3,7 @@
   <HelloWorld msg="Welcome to my first Vue app - todo list"/>
    <form>
     <input type='text' placeholder="Write task" v-model="tmpTaskName"/>
-    <input type='submit' @click="addTask">
+    <input type='submit' @click="addTask" value="add Task">
   </form>
   <ul class="taskContainer">
         <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" :changeStatus="changeStatus"/>
@@ -65,7 +65,7 @@ export default {
 .taskContainer{
   list-style-type:none;
   display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 </style>
