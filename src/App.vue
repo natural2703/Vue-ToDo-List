@@ -6,19 +6,22 @@
     <input type='submit' @click="addTask" value="add Task">
   </form>
   <ul class="taskContainer">
-        <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" :changeStatus="changeStatus"/>
+        <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" :changeStatus="changeStatus" :showEditModal="showEditModal" />
   </ul>
+  <EditModal v-show="showModal" :task="this.tasks[0]" :showEditModal="showEditModal"/>
 </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import SingleTask from './components/SingleTask.vue'
+import EditModal from './components/EditModal.vue'
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    SingleTask
+    SingleTask,
+    EditModal
   },
   data(){
     return{
@@ -28,10 +31,13 @@ export default {
         {id:3,name:"third task",done:false}
       ],
       tmpTaskName:"",
-      counter:3
+      counter:3,
+      showModal:true,
+      tasksToShow:null
     }
   },
   methods:{
+    setTaskToShow(){},
     addTask(e){
       e.preventDefault()
       console.log(this.tmpTaskName)
@@ -48,6 +54,9 @@ export default {
     changeStatus(index,status){
       const i = this.tasks.findIndex(item=>item.id==index)
       this.tasks[i].done = status
+    },
+    showEditModal(){
+      this.showModal = !this.showModal;
     }
   }
 }

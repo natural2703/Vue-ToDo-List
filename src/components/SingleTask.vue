@@ -1,18 +1,17 @@
 <template>
-    <li class="singleItem" @click="showEditModal(true)">
+    <li class="singleItem">
         <p>{{task.name}}</p>
         <p>{{task.id}}</p>
         <p>{{task.done}}</p>
         <p class="delBtn" @click="removeTask(task.id)">X</p>
         <button @click="removeTask(task.id)">delete task</button>
         <button @click="changeStatus(task.id,!task.done)">set done</button>
-        <EditModal v-show="modalVisible" :task="task" :showEditModal="showEditModal"/>
+        
         
     </li>
 </template>
 
 <script>
-import EditModal from './EditModal.vue'
     export default{
         name:'SingleTask',
         data(){
@@ -20,19 +19,17 @@ import EditModal from './EditModal.vue'
                modalVisible:false
             }
         },
-        components:{
-            EditModal
-        },
         props:{
             task:Object,
             removeTask:Function,
-            changeStatus:Function
+            changeStatus:Function,
+            showEditModal:Function
         },
         methods:{
-            showEditModal(show){
-                console.log('works' + show)
-                this.modalVisible = !this.modalVisible
-            }
+            // showEditModal(show){
+            //     console.log('works' + show)
+            //     this.modalVisible = !this.modalVisible
+            // }
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="modal">
         <form>
-            <div><p>X</p></div>
+            <div><p class="closeBtn" @click="showEditModal()">X</p></div>
             <div>
                 <label>name</label>
                 <input type="text"/>
@@ -31,5 +31,8 @@ export default{
     background: blue;
     width:300px;
     height:200px;
+}
+.closeBtn{
+    cursor:pointer
 }
 </style>
