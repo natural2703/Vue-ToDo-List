@@ -6,9 +6,10 @@
     <input type='submit' @click="addTask" value="add Task">
   </form>
   <ul class="taskContainer">
-        <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" :changeStatus="changeStatus" :showEditModal="showEditModal" />
+        <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" 
+        :changeStatus="changeStatus" :showEditModal="showEditModal" :setTaskToShow="setTaskToShow" />
   </ul>
-  <EditModal v-show="showModal" :task="this.tasks[0]" :showEditModal="showEditModal"/>
+  <EditModal v-show="showModal" :task="tasksToShow" :showEditModal="showEditModal"/>
 </div>
 </template>
 
@@ -32,12 +33,15 @@ export default {
       ],
       tmpTaskName:"",
       counter:3,
-      showModal:true,
+      showModal:false,
       tasksToShow:null
     }
   },
   methods:{
-    setTaskToShow(){},
+    setTaskToShow(task){
+      console.log(task)
+      this.task.tasksToShow = task;
+    },
     addTask(e){
       e.preventDefault()
       console.log(this.tmpTaskName)
@@ -55,8 +59,12 @@ export default {
       const i = this.tasks.findIndex(item=>item.id==index)
       this.tasks[i].done = status
     },
-    showEditModal(){
-      this.showModal = !this.showModal;
+    showEditModal(show, chosenTask){
+      if(chosenTask){
+        this.tasksToShow = chosenTask
+      }
+      console.log(show)
+      this.showModal = show;
     }
   }
 }

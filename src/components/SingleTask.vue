@@ -6,7 +6,7 @@
         <p class="delBtn" @click="removeTask(task.id)">X</p>
         <button @click="removeTask(task.id)">delete task</button>
         <button @click="changeStatus(task.id,!task.done)">set done</button>
-        
+         <button @click="handleModal">edit</button>
         
     </li>
 </template>
@@ -30,6 +30,10 @@
             //     console.log('works' + show)
             //     this.modalVisible = !this.modalVisible
             // }
+            handleModal(){
+                this.showEditModal(true,this.task)
+                
+            }
         }
     }
 </script>

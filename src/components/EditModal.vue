@@ -1,10 +1,10 @@
 <template>
     <div class="modal">
         <form>
-            <div><p class="closeBtn" @click="showEditModal()">X</p></div>
+            <div><p class="closeBtn" @click="showEditModal(false)">X</p></div>
             <div>
                 <label>name</label>
-                <input type="text"/>
+                <input type="text" v-model="newName"/>
             </div>
             <div>
                 <label>done</label>
@@ -13,6 +13,7 @@
             <div>
                 <input type="submit"/>
             </div>
+            <button @click.self="log">log taska</button>
         </form>
     </div>
 </template>
@@ -22,6 +23,18 @@ export default{
     props:{
         task:Object,
         showEditModal:Function
+    },
+    data(){
+        return{
+            newName:this.task!=null?this.task.name:""//this.task.name
+        }
+    },
+    methods:{
+        log(e){
+           e.preventDefault()
+            console.log(this.task)
+            console.log(this.newName)
+        }
     }
 }
 </script>
