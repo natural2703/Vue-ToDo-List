@@ -39,15 +39,17 @@
 </script>
 <style>
 .singleItem{
-    background: red;
     display:block;
     padding: 1em;
     margin: 0.5em;
     display:flex;
     flex-direction: column;
+    border-radius: 10px;
+    background-color: #eee;
+    box-shadow: 1px 1px #eee;
 }
 .delBtn{
     position: absolute;
-    cursor:pointer
+    cursor:pointer;
 }
 </style>

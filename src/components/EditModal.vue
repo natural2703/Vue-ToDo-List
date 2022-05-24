@@ -8,7 +8,7 @@
             </div>
             <div>
                 <label>done</label>
-                <input type="checkbox"/>
+                <input type="checkbox" v-model="newTask.done"/>
             </div>
             <div>
                 <input type="submit"/>
@@ -33,7 +33,9 @@ export default{
     },
     watch:{
         task(){
-            this.newTask = this.task
+            this.newTask.id = this.task.id
+            this.newTask.name = this.task.name
+            this.newTask.done = this.task.done
         }
     },
     methods:{
@@ -45,6 +47,7 @@ export default{
         saveChanges(e){
             e.preventDefault()
             this.editSingleTask(this.newTask)
+            this.showEditModal(false)
         }
     }
 }
@@ -52,9 +55,12 @@ export default{
 <style >
 .modal{
     position: fixed;
-    background: blue;
-    width:300px;
-    height:200px;
+    background: #ddd;
+    width: 500px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
 .closeBtn{
     cursor:pointer

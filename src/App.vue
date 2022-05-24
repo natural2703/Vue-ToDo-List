@@ -1,6 +1,7 @@
 <template>
-<div>
+<div class="container">
   <HelloWorld msg="Welcome to my first Vue app - todo list"/>
+  <FilterForm/>
    <form>
     <input type='text' placeholder="Write task" v-model="tmpTaskName"/>
     <input type='submit' @click="addTask" value="add Task">
@@ -17,12 +18,14 @@
 import HelloWorld from './components/HelloWorld.vue'
 import SingleTask from './components/SingleTask.vue'
 import EditModal from './components/EditModal.vue'
+import FilterForm from './components/FilterForm.vue'
 export default {
   name: 'App',
   components: {
     HelloWorld,
     SingleTask,
-    EditModal
+    EditModal,
+    FilterForm
   },
   data(){
     return{
@@ -67,9 +70,9 @@ export default {
       this.showModal = show;
     },
     editSingleTask(task){
-     // console.log(task)
-     const index = this.tasks.findIndex(item=>item.id===task.id)
-     this.tasks[index] = task
+      console.log(task)
+      const index = this.tasks.findIndex(item=>item.id===task.id)
+      this.tasks[index] = task
     }
   }
 }
@@ -89,5 +92,7 @@ export default {
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-
+body{
+  background-color: #ddd;
+}
 </style>
