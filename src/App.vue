@@ -9,7 +9,7 @@
         <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" 
         :changeStatus="changeStatus" :showEditModal="showEditModal" :setTaskToShow="setTaskToShow" />
   </ul>
-  <EditModal v-show="showModal" :task="tasksToShow" :showEditModal="showEditModal"/>
+  <EditModal v-show="showModal" :task="tasksToShow" :showEditModal="showEditModal" :editSingleTask="editSingleTask"/>
 </div>
 </template>
 
@@ -65,6 +65,11 @@ export default {
       }
       console.log(show)
       this.showModal = show;
+    },
+    editSingleTask(task){
+     // console.log(task)
+     const index = this.tasks.findIndex(item=>item.id===task.id)
+     this.tasks[index] = task
     }
   }
 }

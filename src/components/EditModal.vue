@@ -1,10 +1,10 @@
 <template>
-    <div class="modal">
+    <div class="modal" @submit="saveChanges">
         <form>
             <div><p class="closeBtn" @click="showEditModal(false)">X</p></div>
             <div>
                 <label>name</label>
-                <input type="text" v-model="newName"/>
+                <input type="text" v-model="newTask.name"/>
             </div>
             <div>
                 <label>done</label>
@@ -18,22 +18,33 @@
     </div>
 </template>
 <script>
+//import {watch} from 'vue'
 export default{
     name:"EditModal",
     props:{
         task:Object,
-        showEditModal:Function
+        showEditModal:Function,
+        editSingleTask:Function
     },
     data(){
         return{
-            newName:this.task!=null?this.task.name:""//this.task.name
+            newTask:{id:null,name:null,done:null}
+        }
+    },
+    watch:{
+        task(){
+            this.newTask = this.task
         }
     },
     methods:{
         log(e){
            e.preventDefault()
-            console.log(this.task)
+            console.log(this.task!=null)
             console.log(this.newName)
+        },
+        saveChanges(e){
+            e.preventDefault()
+            this.editSingleTask(this.newTask)
         }
     }
 }
