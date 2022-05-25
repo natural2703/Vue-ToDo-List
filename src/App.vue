@@ -1,10 +1,14 @@
 <template>
 <div class="container">
   <HelloWorld msg="Welcome to my first Vue app - todo list"/>
-  <FilterForm/>
+  <FilterForm :searchTaskName="searchTaskName" :searchHandle="searchHandle"/>
    <form>
-    <input type='text' placeholder="Write task" v-model="tmpTaskName"/>
-    <input type='submit' @click="addTask" value="add Task">
+    <div>
+      <input type='text' placeholder="Write task" v-model="tmpTaskName"/>
+    </div>
+    <div>
+      <input type='submit' @click="addTask" value="add Task">
+    </div>
   </form>
   <ul class="taskContainer">
         <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" 
@@ -37,7 +41,8 @@ export default {
       tmpTaskName:"",
       counter:3,
       showModal:false,
-      tasksToShow:null
+      tasksToShow:null,
+      searchTaskName:""
     }
   },
   methods:{
@@ -73,6 +78,9 @@ export default {
       console.log(task)
       const index = this.tasks.findIndex(item=>item.id===task.id)
       this.tasks[index] = task
+    },
+    searchHandle(tmpName){
+      console.log(`tmp name: ${tmpName}`)
     }
   }
 }
