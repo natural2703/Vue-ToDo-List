@@ -57,12 +57,14 @@ export default {
     },
     addTask(e){
       e.preventDefault()
-      console.log(this.tmpTaskName)
-      this.counter++
-      const newTask = {id:this.counter,name:this.tmpTaskName,done:false}
-      this.tasks.push(newTask)
-      this.rawTask.push(newTask)
-      this.tmpTaskName = ""
+      //console.log(this.tmpTaskName.length)
+      if(this.tmpTaskName.length>0){
+        this.counter++
+        const newTask = {id:this.counter,name:this.tmpTaskName,done:false}
+        this.tasks.push(newTask)
+        this.rawTask.push(newTask)
+        this.tmpTaskName = ""
+      }
     },
     removeTask(index){
       console.log(`delete task at ${index}`)
@@ -85,8 +87,9 @@ export default {
       const index = this.tasks.findIndex(item=>item.id===task.id)
       this.tasks[index] = task
     },
-    searchHandle(tmpName){
+    searchHandle(tmpName, tmpStatus){
       this.rawTask = this.tasks.filter(item=>item.name.includes(tmpName));
+      this.rawTask = this.rawTask.filter(item=>item.done === tmpStatus);
       console.log(this.rawTask);
     }
   }

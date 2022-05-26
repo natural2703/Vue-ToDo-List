@@ -2,7 +2,7 @@
 My first app using vue. It's a list to do app.\
 [+] adding new task\
 [+] listing tasks\
-[] validate task before add\
+[+] validate task before add\
 [+] status change(reverses) button\
 [+] delete task button\
 [] modal with question "are you sure" to delete button\
@@ -11,4 +11,4 @@ My first app using vue. It's a list to do app.\
 [+] filtering task by Name\
 [] filtering task by status\
 [] styling\
-[] saving tasks in local storage \
+[] saving tasks in local storage\

@@ -4,6 +4,7 @@
         <div>
             <label for="searchInput">filtruj</label>
             <div><input type="text" v-model="text" id="searchInput"/></div>
+            <div><input type="checkbox" v-model="status" id="searchInput"/></div>
         </div>
     </form>
 </template>
@@ -17,13 +18,17 @@ export default{
     },
      data(){
         return{
-            text:""
+            text:"",
+            status:false
         }
     },
     watch:{
         text(){
             //console.log(this.text);
-            this.searchHandle(this.text);
+            this.searchHandle(this.text,this.status);
+        },
+        status(){
+            this.searchHandle(this.text,this.status);
         }
     }
 }
