@@ -1,5 +1,5 @@
 # first-app
-My first app using vue. It's a list to do app.
+My first app using vue. It's a list to do app.__
 [+] adding new task
 [+] listing tasks
 [] validate task before add
