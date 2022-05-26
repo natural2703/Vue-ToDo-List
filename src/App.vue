@@ -11,7 +11,7 @@
     </div>
   </form>
   <ul class="taskContainer">
-        <SingleTask v-for="task in tasks" :key="task.id" :task="task" :removeTask="removeTask" 
+        <SingleTask v-for="task in rawTask" :key="task.id" :task="task" :removeTask="removeTask" 
         :changeStatus="changeStatus" :showEditModal="showEditModal" :setTaskToShow="setTaskToShow" />
   </ul>
   <EditModal v-show="showModal" :task="tasksToShow" :showEditModal="showEditModal" :editSingleTask="editSingleTask"/>
@@ -33,6 +33,11 @@ export default {
   },
   data(){
     return{
+      rawTask:[
+        {id:1,name:"first task",done:false},
+        {id:2,name:"second task",done:false},
+        {id:3,name:"third task",done:false}
+      ],
       tasks:[
         {id:1,name:"first task",done:false},
         {id:2,name:"second task",done:false},
@@ -56,6 +61,7 @@ export default {
       this.counter++
       const newTask = {id:this.counter,name:this.tmpTaskName,done:false}
       this.tasks.push(newTask)
+      this.rawTask.push(newTask)
       this.tmpTaskName = ""
     },
     removeTask(index){
@@ -80,7 +86,8 @@ export default {
       this.tasks[index] = task
     },
     searchHandle(tmpName){
-      console.log(`tmp name: ${tmpName}`)
+      this.rawTask = this.tasks.filter(item=>item.name.includes(tmpName));
+      console.log(this.rawTask);
     }
   }
 }

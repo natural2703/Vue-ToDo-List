@@ -8,6 +8,7 @@ My first app using vue. It's a list to do app.
 [] modal with question "are you sure" to delete button
 [+] edit detail modal for single task
 [+] edit option for all params
-[] filtering task
+[+] filtering task by Name
+[] filtering task by status
 [] styling
 [] saving tasks in local storage 
