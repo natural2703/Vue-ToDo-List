@@ -4,7 +4,7 @@
         <p>{{task.id}}</p>
         <p>{{task.done}}</p>
         <p class="delBtn" @click="removeTask(task.id)">X</p>
-        <button @click="removeTask(task.id)">delete task</button>
+        <button @click="handleDelete">delete task</button>
         <button @click="changeStatus(task.id,!task.done)">set done</button>
          <button @click="handleModal">edit</button>
         
@@ -23,7 +23,9 @@
             task:Object,
             removeTask:Function,
             changeStatus:Function,
-            showEditModal:Function
+            showEditModal:Function,
+            setShowDeleteModal:Function,
+            setIdToDelete:Function
         },
         methods:{
             // showEditModal(show){
@@ -33,6 +35,11 @@
             handleModal(){
                 this.showEditModal(true,this.task)
                 
+            },
+            handleDelete(){
+                this.setShowDeleteModal(true);
+                this.setIdToDelete(this.task.id)
+                //this.removeTask(this.task.id);
             }
         }
     }

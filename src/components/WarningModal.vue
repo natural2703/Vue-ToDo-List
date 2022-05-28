@@ -2,7 +2,7 @@
     <div class="modal">
         <h3>Are you sure</h3>
         <button @click="setShowDeleteModal(false,true)">Yes</button>
-        <button @click="setShowDeleteModal(false,false)">no</button>
+        <button @click="setShowDeleteModal(false)">no</button>
     </div>
 </template>
 <script>

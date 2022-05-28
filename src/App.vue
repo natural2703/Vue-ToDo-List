@@ -12,7 +12,8 @@
   </form>
   <ul class="taskContainer">
         <SingleTask v-for="task in rawTask" :key="task.id" :task="task" :removeTask="removeTask" 
-        :changeStatus="changeStatus" :showEditModal="showEditModal" :setTaskToShow="setTaskToShow" />
+        :changeStatus="changeStatus" :showEditModal="showEditModal" :setTaskToShow="setTaskToShow" 
+        :setShowDeleteModal='setShowDeleteModal' :setIdToDelete="setIdToDelete" />
   </ul>
   <EditModal v-show="showModal" :task="tasksToShow" :showEditModal="showEditModal" :editSingleTask="editSingleTask"/>
   <WarningModal v-show="showDeleteModal" :setShowDeleteModal='setShowDeleteModal'/>
@@ -51,11 +52,22 @@ export default {
       showModal:false,
       tasksToShow:null,
       searchTaskName:"",
-      showDeleteModal:true
+      showDeleteModal:false,
+      idToDelete:null
     }
   },
+  watch:{},
   methods:{
-    setShowDeleteModal(show){
+    setIdToDelete(id){
+      this.idToDelete = id;
+    },
+    setShowDeleteModal(show,decision){
+      if(decision){
+        //this.callback = callback();
+        //callback();
+        console.log('delete')
+        this.removeTask(this.idToDelete)
+      }
       this.showDeleteModal = show;
     },
     setTaskToShow(task){
