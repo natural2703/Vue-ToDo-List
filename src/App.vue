@@ -15,6 +15,7 @@
         :changeStatus="changeStatus" :showEditModal="showEditModal" :setTaskToShow="setTaskToShow" />
   </ul>
   <EditModal v-show="showModal" :task="tasksToShow" :showEditModal="showEditModal" :editSingleTask="editSingleTask"/>
+  <WarningModal v-show="showDeleteModal" :setShowDeleteModal='setShowDeleteModal'/>
 </div>
 </template>
 
@@ -23,13 +24,15 @@ import HelloWorld from './components/HelloWorld.vue'
 import SingleTask from './components/SingleTask.vue'
 import EditModal from './components/EditModal.vue'
 import FilterForm from './components/FilterForm.vue'
+import WarningModal from './components/WarningModal.vue'
 export default {
   name: 'App',
   components: {
     HelloWorld,
     SingleTask,
     EditModal,
-    FilterForm
+    FilterForm,
+    WarningModal
   },
   data(){
     return{
@@ -47,10 +50,14 @@ export default {
       counter:3,
       showModal:false,
       tasksToShow:null,
-      searchTaskName:""
+      searchTaskName:"",
+      showDeleteModal:true
     }
   },
   methods:{
+    setShowDeleteModal(show){
+      this.showDeleteModal = show;
+    },
     setTaskToShow(task){
       console.log(task)
       this.task.tasksToShow = task;
@@ -68,8 +75,10 @@ export default {
     },
     removeTask(index){
       console.log(`delete task at ${index}`)
-      console.log(this.tasks[1])
+      //console.log(this.tasks[1])
+
       this.tasks = this.tasks.filter(item=>item.id!==index)
+      this.rawTask = this.rawTask.filter(item=>item.id!==index)
     },
     changeStatus(index,status){
       const i = this.tasks.findIndex(item=>item.id==index)
