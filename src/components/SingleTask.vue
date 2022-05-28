@@ -3,10 +3,10 @@
         <p>{{task.name}}</p>
         <p>{{task.id}}</p>
         <p>{{task.done}}</p>
-        <p class="delBtn" @click="removeTask(task.id)">X</p>
-        <button @click="handleDelete">delete task</button>
-        <button @click="changeStatus(task.id,!task.done)">set done</button>
-         <button @click="handleModal">edit</button>
+        <p class="delBtn" @click="handleDelete">X</p>
+        <button @click="handleDelete" class="taskBtn">delete task</button>
+        <button @click="changeStatus(task.id,!task.done)" class="taskBtn">set done</button>
+        <button @click="handleModal" class="taskBtn">edit</button>
         
     </li>
 </template>
@@ -25,7 +25,8 @@
             changeStatus:Function,
             showEditModal:Function,
             setShowDeleteModal:Function,
-            setIdToDelete:Function
+            setIdToDelete:Function,
+            setTaskToShow:Function
         },
         methods:{
             // showEditModal(show){
@@ -34,7 +35,8 @@
             // }
             handleModal(){
                 this.showEditModal(true,this.task)
-                
+               // this.setTaskToShow(this.task)
+               console.log("change task!!!")
             },
             handleDelete(){
                 this.setShowDeleteModal(true);
@@ -59,4 +61,18 @@
     position: absolute;
     cursor:pointer;
 }
+.taskBtn{
+    margin: 0.25em 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25em;
+    width: 90%;
+    align-self: center;
+    padding:0.25em;
+}
+.taskBtn:hover{
+    background-color: #ddd;
+    transition-duration: 250ms;
+}
+
 </style>

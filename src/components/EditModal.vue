@@ -48,6 +48,7 @@ export default{
             e.preventDefault()
             this.editSingleTask(this.newTask)
             this.showEditModal(false)
+            this.newTask={id:null,name:null,done:null}
         }
     }
 }

@@ -95,6 +95,7 @@ export default {
     changeStatus(index,status){
       const i = this.tasks.findIndex(item=>item.id==index)
       this.tasks[i].done = status
+      this.rawTask[i].done = status
     },
     showEditModal(show, chosenTask){
       if(chosenTask){
@@ -106,7 +107,9 @@ export default {
     editSingleTask(task){
       console.log(task)
       const index = this.tasks.findIndex(item=>item.id===task.id)
+      console.log(index);
       this.tasks[index] = task
+      this.rawTask[index] = task
     },
     searchHandle(tmpName, tmpStatus){
       this.rawTask = this.tasks.filter(item=>item.name.includes(tmpName));
