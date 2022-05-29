@@ -3,6 +3,8 @@
   <HelloWorld msg="Welcome to my first Vue app - todo list"/>
   <FilterForm :searchTaskName="searchTaskName" :searchHandle="searchHandle"/>
   <button @click="resetFilter">resetuj filtrowanie</button>
+  <button @click="saveDataToStorage">zapisz</button>
+  <button @click="loadDataFromStorage">wczytaj</button>
    <form>
     <div>
       <input type='text' placeholder="Write task" v-model="tmpTaskName"/>
@@ -119,6 +121,15 @@ export default {
     },
     resetFilter(){
       this.rawTask = this.tasks;
+    },
+    saveDataToStorage(){
+      localStorage.setItem('tasks',JSON.stringify(this.tasks))
+    },
+    loadDataFromStorage(){ 
+      const data = localStorage.getItem('tasks')
+      console.log(JSON.parse(data))
+      this.tasks = JSON.parse(data)
+      this.rawTask = JSON.parse(data)
     }
   }
 }
