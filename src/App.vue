@@ -2,6 +2,7 @@
 <div class="container">
   <HelloWorld msg="Welcome to my first Vue app - todo list"/>
   <FilterForm :searchTaskName="searchTaskName" :searchHandle="searchHandle"/>
+  <button @click="resetFilter">resetuj filtrowanie</button>
    <form>
     <div>
       <input type='text' placeholder="Write task" v-model="tmpTaskName"/>
@@ -115,6 +116,9 @@ export default {
       this.rawTask = this.tasks.filter(item=>item.name.includes(tmpName));
       this.rawTask = this.rawTask.filter(item=>item.done === tmpStatus);
       console.log(this.rawTask);
+    },
+    resetFilter(){
+      this.rawTask = this.tasks;
     }
   }
 }
