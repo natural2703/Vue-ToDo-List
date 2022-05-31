@@ -10,7 +10,7 @@ My first app using vue. It's a list to do app.\
 [+] filtering task by Name\
 [+] filtering task by status\
 [+] modal with question "are you sure" to delete button\
+[+] saving tasks in local storage\
 [in progress] styling
-[] saving tasks in local storage\
-[] split tasks for smaller parts(20 per page)
+[in progress] split tasks for smaller parts(20 per page)
 [in progress] bug fixing

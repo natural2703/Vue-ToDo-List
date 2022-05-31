@@ -13,11 +13,8 @@
       <input type='submit' @click="addTask" value="add Task">
     </div>
   </form>
-  <ul class="taskContainer">
-        <SingleTask v-for="task in rawTask" :key="task.id" :task="task" :removeTask="removeTask" 
-        :changeStatus="changeStatus" :showEditModal="showEditModal" :setTaskToShow="setTaskToShow" 
-        :setShowDeleteModal='setShowDeleteModal' :setIdToDelete="setIdToDelete" />
-  </ul>
+  <TaskContainer :rawTask="rawTask"/>
+  
   <EditModal v-show="showModal" :task="tasksToShow" :showEditModal="showEditModal" :editSingleTask="editSingleTask"/>
   <WarningModal v-show="showDeleteModal" :setShowDeleteModal='setShowDeleteModal'/>
 </div>
@@ -25,18 +22,20 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import SingleTask from './components/SingleTask.vue'
+//import SingleTask from './components/SingleTask.vue'
 import EditModal from './components/EditModal.vue'
 import FilterForm from './components/FilterForm.vue'
 import WarningModal from './components/WarningModal.vue'
+import TaskContainer from './components/TaskContainer';
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    SingleTask,
+   // SingleTask,
     EditModal,
     FilterForm,
-    WarningModal
+    WarningModal,
+    TaskContainer
   },
   data(){
     return{
